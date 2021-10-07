@@ -2,17 +2,34 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-
+vector<int> factorial(int N){
+    vector<int> ans(1,1);
+    for(int i=2;i<=N;i++)
+    {
+        int rem=0;
+       for(int j=0;j<ans.size();j++)
+       {
+          rem=rem+(i*ans[j]);
+          ans[j]=rem%10;
+          rem=rem/10;
+       }
+       while(rem)
+       {
+           ans.push_back(rem%10);
+           rem/=10;
+       }
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
+    }
 int main() {    
 
 int n;
 cin>>n;
-int prod=1;
-for(int i=1;i<=n;i++)
-{
-    prod=prod*i;
-}
-cout<<prod<<endl;
+vector<int> q=factorial(n);
+    for(int x:q)
+        cout<<x;
+
     
 
     
